@@ -1,0 +1,39 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: StarNFTV4
+    network: matic
+    source:
+      address: "0x5D666F215a85B87Cb042D59662A7ecd2C8Cc44e6"
+      abi: StarNFTV4
+      startBlock: 30363721
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - EventMinterAdded
+        - EventMinterRemoved
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: StarNFTV4
+          file: ./abis/StarNFTV4.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: EventMinterAdded(indexed address)
+          handler: handleEventMinterAdded
+        - event: EventMinterRemoved(indexed address)
+          handler: handleEventMinterRemoved
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/star-nftv-4.ts
