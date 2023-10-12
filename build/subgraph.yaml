@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: StarNFTV4
@@ -18,8 +18,8 @@ dataSources:
         - User
       abis:
         - name: StarNFTV4
-          file: ./abis/StarNFTV4.json
+          file: StarNFTV4\abis\StarNFTV4.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: StarNFTV4\StarNFTV4.wasm
